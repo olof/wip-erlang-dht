@@ -1,0 +1,3 @@
+The purpose of this project is to implement a Kademlia client/node in Erlang,
+suitable for use with Mainline DHT, but without enough flexibility to be able
+to use it with other similar Kademlia based DHTs.
