@@ -13,11 +13,13 @@ id() -> "98d832967f9dacbf60381657a6cd5e077cb8d3cb".
 %% XXX: note that there currently is no validation that the IDs
 %%      are the same length (and thus, potentially within the
 %%      same namespace), that is up to the caller to verify.
-distance(Node1, Node2) -> id_bin(Node1) bxor id_bin(Node2).
+distance(Node1, Node2) -> id_int(Node1) bxor id_int(Node2).
 
-%% id_{hex,bin}, converts to/from binary/hexadecimal representation
-%id_hex(BinStr) -> integer_to_list(BinStr, 16).
-id_bin(HexStr) -> list_to_integer(HexStr, 16).
+%% id_{hex,int}, converts to/from integer/hexadecimal string representation
+id_hex(Int) when is_integer(Int) -> integer_to_list(Int, 16);
+id_hex(HexStr) -> HexStr.
+id_int(HexStr) when is_list(HexStr) -> list_to_integer(HexStr, 16);
+id_int(Int) -> Int.
 
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
@@ -34,8 +36,13 @@ distance_test() ->
 			     "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}},
 			{1, {"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 			     "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB"}},
-			{id_bin(max_sha1()), {min_sha1(), max_sha1()}}
+			{id_int(max_sha1()), {min_sha1(), max_sha1()}}
 		]
 	).
+
+id_hex_int_conv_test() ->
+	?assertEqual(max_sha1(), id_hex( id_int( max_sha1() ) )).
+id_hex_int_noconv_hex_test() ->
+	?assertEqual(max_sha1(), id_hex( max_sha1() ) ).
 
 -endif.
