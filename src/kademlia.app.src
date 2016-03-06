@@ -1,0 +1,12 @@
+{application, kademlia,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { kademlia_app, []}},
+  {env, []}
+ ]}.
