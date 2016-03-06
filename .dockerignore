@@ -1,4 +1,3 @@
 Dockerfile
 .dockerignore
-ebin/
 README
