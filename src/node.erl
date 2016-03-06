@@ -6,8 +6,8 @@ id() -> "98d832967f9dacbf60381657a6cd5e077cb8d3cb".
 %% TODO: OTP behavior
 %% TODO: joining network
 
-%% Calculate the Kamelia distance between two nodes: The XOR of
-%% two node IDs. The IDs should be provided as a hexadecimal
+%% Calculate the Kademlia distance between two nodes: The XOR of
+%% two node IDs.  The IDs should be provided as a hexadecimal
 %% representation.
 %%
 %% XXX: note that there currently is no validation that the IDs
