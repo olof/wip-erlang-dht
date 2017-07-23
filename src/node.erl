@@ -10,9 +10,10 @@ id() -> "98d832967f9dacbf60381657a6cd5e077cb8d3cb".
 %% two node IDs.  The IDs should be provided as a hexadecimal
 %% representation.
 %%
-%% XXX: note that there currently is no validation that the IDs
-%%      are the same length (and thus, potentially within the
-%%      same namespace), that is up to the caller to verify.
+%% FIXME: note that there currently is no validation that the IDs
+%%        are the same length (and thus, potentially within the
+%%        same namespace), that is currently up to the caller to
+%%        verify.
 distance(Node1, Node2) -> id_int(Node1) bxor id_int(Node2).
 
 %% id_{hex,int}, converts to/from integer/hexadecimal string representation
@@ -36,7 +37,8 @@ distance_test() ->
 			     "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}},
 			{1, {"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 			     "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB"}},
-			{id_int(max_sha1()), {min_sha1(), max_sha1()}}
+			{id_int(max_sha1()), {min_sha1(), max_sha1()}},
+			{id_int(max_sha1())-1, {min_sha1()+1, max_sha1()}}
 		]
 	).
 
