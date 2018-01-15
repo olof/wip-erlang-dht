@@ -1,3 +1,8 @@
+This is not a working implementation of a DHT client. Yet..., and maybe never
+will be.
+
 The purpose of this project is to implement a Kademlia client/node in Erlang,
 suitable for use with Mainline DHT, but with enough flexibility to be able to
 use it with other similar Kademlia based DHTs.
+
+(also, learning erlang, so probably disregard this repository completely.)
